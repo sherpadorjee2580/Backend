@@ -1,22 +1,23 @@
+const dotenv = require("dotenv");
 const express = require("express");
 const cors = require("cors");
 
+const connectToDatabase = require("./db/db");
+
 const app = express();
+dotenv.config();
+connectToDatabase();
+
+const PORT = process.env.PORT;
 
 app.use(cors());
 app.use(express.json());
 
-const PORT = 5000;
-
 app.get("/", (req, res) => {
-  //   res.json({
-  //     Message: "Hello",
-  //     status: "running",
-  //   });
-  //   res.write("Hello");
-  res.send("My name is Dorji Sherpa");
+  res.send("Hello How are you ");
 });
+app.post("/register", (req, res) => {});
 
 app.listen(PORT, () => {
-  console.log("App is running on port 5000");
+  console.log("The server is running on the port 5000");
 });
